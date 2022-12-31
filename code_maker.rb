@@ -1,3 +1,5 @@
+require 'pry-byebug'
+
 # The Code maker comes up with a code that the opponent has to break.
 class CodeMaker
   private attr_accessor :code, :colors
@@ -15,10 +17,11 @@ class CodeMaker
   #If the computer has to make the code:
   def computer
     puts "The computer is generating the code..."
-    sleep (2)
+    sleep (1.03)
     until code.size == 4
-      code.push
+      code.push(colors[rand(6)])
     end
+    puts "The code has been generated!"
   end
 
   #If the user has to make the code:
@@ -47,4 +50,4 @@ class CodeMaker
 
 end
 
-CodeMaker.new(2)
+CodeMaker.new(1)
