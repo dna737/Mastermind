@@ -1,4 +1,5 @@
 require 'pry-byebug'
+require_relative 'code_breaker.rb'
 
 # The Code maker comes up with a code that the opponent has to break.
 class CodeMaker
@@ -6,10 +7,12 @@ class CodeMaker
   def initialize(number)
     @code = []
     @colors = [].push('V').push('I').push('B').push('G').push('Y').push('O')
-    if number == 1 #The computer has to make the code.
-      computer  
+    if number == 1 
+      human     #The user makes the code, and the computer has to break it.
+      @code_breaker = CodeBreaker.new(1)
     else
-      human #The user makes the code.
+      computer  #The computer makes the code, and the human has to break it.
+      @code_breaker = CodeBreaker.new(2)
     end
   end
 
@@ -50,4 +53,3 @@ class CodeMaker
 
 end
 
-CodeMaker.new(1)
