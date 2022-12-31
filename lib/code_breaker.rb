@@ -54,10 +54,12 @@ class CodeBreaker
     
     puts "Number of black pegs: #{}"
     return true if black_pegs == 4
-
-
+        
     #Check the number of white pegs:
-
+    white_pegs = 0
+    for k in 0...input.size
+      if input[k].is_a? Numeric && 
+    end
   end
 
 end
