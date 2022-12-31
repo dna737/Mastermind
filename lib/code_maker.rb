@@ -9,10 +9,12 @@ class CodeMaker
     @colors = [].push('V').push('I').push('B').push('G').push('Y').push('O')
     if number == 1 
       human     #The user makes the code, and the computer has to break it.
-      @code_breaker = CodeBreaker.new(1)
+      print "\e[2J\e[H"
+      @code_breaker = CodeBreaker.new(1, code)
     else
       computer  #The computer makes the code, and the human has to break it.
-      @code_breaker = CodeBreaker.new(2)
+      print "\e[2J\e[H"
+      @code_breaker = CodeBreaker.new(2, code)
     end
   end
 
