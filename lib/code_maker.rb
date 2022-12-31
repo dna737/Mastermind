@@ -10,11 +10,11 @@ class CodeMaker
     if number == 1 
       human     #The user makes the code, and the computer has to break it.
       print "\e[2J\e[H"
-      @code_breaker = CodeBreaker.new(1)
+      @code_breaker = CodeBreaker.new(1, code)
     else
       computer  #The computer makes the code, and the human has to break it.
       print "\e[2J\e[H"
-      @code_breaker = CodeBreaker.new(2)
+      @code_breaker = CodeBreaker.new(2, code)
     end
   end
 
