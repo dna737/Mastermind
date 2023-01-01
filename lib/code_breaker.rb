@@ -16,6 +16,11 @@ class CodeBreaker
       end
   end
 
+  # def initialize(input, code, something)
+  #   #This is for testing purposes only:
+  #   verdict(input, code)
+  # end
+
   def computer
 
   end 
@@ -37,8 +42,9 @@ class CodeBreaker
         break
       else
         puts "\nIncorrect! Guesses remaining: #{12-i}"
+        user_input = []
+        # next  
       end
-      user_input = []
     end
   end
 
@@ -47,13 +53,14 @@ class CodeBreaker
     #Check the number of black pegs:
     black_pegs = 0
     for j in 0...input.size
-      if input[j] == code[j] && input[j] == input[j].to_i.to_s
+      if input[j].is_a?(String) && input[j].upcase == code[j]  
         black_pegs += 1
-        input[j] = "x"
+        input[j] = 0
       end
     end
     
     puts "Number of black pegs: #{black_pegs}"
+    puts "the code is #{code}"
     if black_pegs == 4 
       return true 
     end
@@ -62,9 +69,9 @@ class CodeBreaker
     white_pegs = 0
     code_copy = code.clone
     for k in 0...input.size
-      if input[k].is_a? Numeric && code_copy.include?(input[k])
+      if input[k].is_a?(String) && code_copy.include?(input[k].upcase)
         white_pegs += 1
-        code_copy[code_copy.find_index(input[k])] = "W"
+        code_copy[code_copy.find_index(input[k].upcase)] = 0
       end
     end
     puts "Number of white pegs: #{white_pegs}"
