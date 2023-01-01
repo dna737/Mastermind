@@ -1,6 +1,6 @@
 class CodeBreaker
   private attr_accessor :user_input, :whites, :blacks
-  private attr_reader :code
+  private attr_reader :code, :colors
   def initialize(number, code)
     @code = code
     @colors = [].push('V').push('I').push('B').push('G').push('Y').push('O')
@@ -11,7 +11,7 @@ class CodeBreaker
         computer
       else 
         #The user needs to break the code.
-        @user_input = [] 
+        @user_input = []
         human 
       end
   end
@@ -42,19 +42,21 @@ class CodeBreaker
     end
   end
 
-  #Lets us know the number of black or white pegs while breaking the code.
+  #Lets us know the number of black or white pegs when breaking the code.
   def verdict(input, code)  
     #Check the number of black pegs:
     black_pegs = 0
     for j in 0...input.size
-      if input[j] == code[j] && input[j].is_a? Numeric
+      if input[j] == code[j] && input[j] == input[j].to_i.to_s
         black_pegs += 1
         input[j] = "x"
       end
     end
     
     puts "Number of black pegs: #{black_pegs}"
-    return true if black_pegs == 4
+    if black_pegs == 4 
+      return true 
+    end
         
     #Check the number of white pegs:
     white_pegs = 0
@@ -64,9 +66,8 @@ class CodeBreaker
         white_pegs += 1
         code_copy[code_copy.find_index(input[k])] = "W"
       end
+    end
+    puts "Number of white pegs: #{white_pegs}"
+    false 
   end
-
-  puts "Number of white pegs: #{white_pegs}"
-  false 
-
 end
