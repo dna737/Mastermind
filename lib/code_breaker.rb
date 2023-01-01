@@ -34,6 +34,7 @@ class CodeBreaker
       end
       if verdict(input, code)
         puts "\nCongrats! You guessed it in #{i} move(s)!"
+        break
       else
         puts "\nIncorrect! Guesses remaining: #{12-i}"
       end
@@ -52,14 +53,20 @@ class CodeBreaker
       end
     end
     
-    puts "Number of black pegs: #{}"
+    puts "Number of black pegs: #{black_pegs}"
     return true if black_pegs == 4
         
     #Check the number of white pegs:
     white_pegs = 0
+    code_copy = code.clone
     for k in 0...input.size
-      if input[k].is_a? Numeric && 
-    end
+      if input[k].is_a? Numeric && code_copy.include?(input[k])
+        white_pegs += 1
+        code_copy[code_copy.find_index(input[k])] = "W"
+      end
   end
+
+  puts "Number of white pegs: #{white_pegs}"
+  false 
 
 end
