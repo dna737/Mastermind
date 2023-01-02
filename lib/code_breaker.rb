@@ -11,13 +11,13 @@ class CodeBreaker
         computer
       else 
         #The user needs to break the code.
-        @user_input = []
         human 
       end
   end
 
   # def initialize(input, code, something)
   #   #This is for testing purposes only:
+  #   @user_input = []
   #   verdict(input, code)
   # end
 
@@ -28,22 +28,27 @@ class CodeBreaker
   def human
     puts "\n There is a code. Guess it in 12 (or less) moves to win!"
     for i in 1..12 #you have 12 rounds to figure this out
+
+      #Taking the input (4 characters):
+      user_input = []
       until user_input.size == 4
         puts "Please enter a letter. #{4 - user_input.size} more left"
-        input = gets.chomp[0]
-        if colors.include?(input.upcase)
-          user_input.push(input)
+
+        input = gets.chomp
+        if input != nil && input != '' && colors.include?(input[0].upcase)
+          user_input.push(input[0])
         else
           puts "Invalid input. Please enter a valid color."
         end
       end
-      if verdict(input, code)
+      
+      user_input = user_input.map{|i| i.upcase}
+      if verdict(user_input, code)
         puts "\nCongrats! You guessed it in #{i} move(s)!"
         break
       else
         puts "\nIncorrect! Guesses remaining: #{12-i}"
-        user_input = []
-        # next  
+        next  
       end
     end
   end
@@ -53,9 +58,9 @@ class CodeBreaker
     #Check the number of black pegs:
     black_pegs = 0
     for j in 0...input.size
-      if input[j].is_a?(String) && input[j].upcase == code[j]  
+      if input != nil && input[j] != nil && input[j].is_a?(String) && input[j].upcase == code[j]  
         black_pegs += 1
-        input[j] = 0
+        input[j] = "0".to_i
       end
     end
     
@@ -75,6 +80,7 @@ class CodeBreaker
       end
     end
     puts "Number of white pegs: #{white_pegs}"
+    user_input = []
     false 
   end
 end
