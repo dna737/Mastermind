@@ -41,9 +41,9 @@ class CodeMaker
     #Storing 4 inputs:
     until code.size == 4
       puts "Please enter a letter. #{4 - code.size} more left"
-      input = gets.chomp[0]
-      if colors.include?(input.upcase)
-        code.push(input)
+      input = gets.chomp
+      if input != nil && input != '' && colors.include?(input[0].upcase)
+        code.push(input[0].upcase)
       else
         puts "Invalid input. Please enter a valid color."
       end
