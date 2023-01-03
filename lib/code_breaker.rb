@@ -39,7 +39,7 @@ class CodeBreaker
       puts "The computer's correct guess was: #{comp_input}"
       break
     else 
-      puts "The computer guessed it wrong. It has #{3-i} move(s) left!"
+      puts "The computer guessed it wrong. It has #{4-i} move(s) left!"
       next
     end
     end
