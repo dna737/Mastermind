@@ -7,17 +7,18 @@ class CodeMaker
   def initialize(number)
     @code = []
     @colors = [].push('V').push('I').push('B').push('G').push('Y').push('O')
-    if number == 1 
-      human     #The user makes the code, and the computer has to break it.
+    if number == 1
+      human     # The user makes the code, and the computer has to break it.
       @code_breaker = CodeBreaker.new(1, code)
     else
-      computer  #The computer makes the code, and the human has to break it.
+      computer  # The computer makes the code, and the human has to break it.
       @code_breaker = CodeBreaker.new(2, code)
     end
   end
 
-  private 
-  #If the computer has to make the code:
+  private
+
+  # If the computer has to make the code:
   def computer
     puts "The computer is generating the code..."
     sleep (1.03)
@@ -27,18 +28,18 @@ class CodeMaker
     puts "The code has been generated!"
   end
 
-  #If the user has to make the code:
+  # If the user has to make the code:
   def human
     puts "Please make your code by selecting 4 colors in an order (Repetition is allowed).
-    For reference: 
+    For reference:
     V - Violet
     I - Indigo
     B - Blue
     G - Green
     Y - Yellow
     O - Orange\n"
-    
-    #Storing 4 inputs:
+
+    # Storing 4 inputs:
     until code.size == 4
       puts "Please enter a letter. #{4 - code.size} more left"
       input = gets.chomp
@@ -50,6 +51,4 @@ class CodeMaker
     end
     puts "Input entered!"
   end
-
 end
-
